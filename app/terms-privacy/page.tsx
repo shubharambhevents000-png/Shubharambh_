@@ -3,10 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getContactData } from '@/lib/actions';
 import { ContactSection } from '@/components/terms-privacy/contact-section';
 
-export const metadata = {
-  title: 'Terms & Privacy Policy - SSCreation',
-  description: 'Read our terms of service, privacy policy, refund policy, and delivery information for SSCreation digital templates.',
-};
+
 
 export default async function TermsPrivacyPage() {
   const { contactSettings } = await getContactData();
@@ -114,7 +111,7 @@ export default async function TermsPrivacyPage() {
                 </div>
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <p>We'll re-send the access link in case of errors, but no refunds will be processed for downloadable items.</p>
+                  <p>Well re-send the access link in case of errors, but no refunds will be processed for downloadable items.</p>
                 </div>
               </div>
             </CardContent>
