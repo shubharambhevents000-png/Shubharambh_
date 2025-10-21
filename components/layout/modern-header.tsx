@@ -101,7 +101,7 @@ export function ModernHeader({
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="bg-gradient-to-r from-purple-600 to-pink-600 py-2 px-4">
+      <div className="bg-gradient-to-r from-purple-600 to-pink-600 py-2 px-4 md:block hidden">
         <div className="container mx-auto flex items-center justify-between text-white text-sm">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
