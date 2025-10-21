@@ -1,12 +1,26 @@
-"use client"
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { Menu, X, Phone, ChevronDown, Star, Award, MessageCircle } from 'lucide-react';
+"use client";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import {
+  Menu,
+  X,
+  Phone,
+  ChevronDown,
+  Star,
+  Award,
+  MessageCircle,
+  Heart,
+  Camera,
+  Music,
+  Utensils,
+  Flower,
+  Sparkles,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from '@/components/ui/button';
-import { SectionHierarchy } from '@/types/section';
-import Image from 'next/image';
+import { Button } from "@/components/ui/button";
+import { SectionHierarchy } from "@/types/section";
+import Image from "next/image";
 
 interface ModernHeaderProps {
   navigationSections: SectionHierarchy[];
@@ -16,7 +30,49 @@ interface ModernHeaderProps {
   };
 }
 
-export function ModernHeader({ navigationSections, headerData }: ModernHeaderProps) {
+const servicesMenuItems = [
+  {
+    name: "Wedding Planning",
+    slug: "wedding-planning",
+    icon: Heart,
+    color: "from-pink-500 to-rose-500",
+  },
+  {
+    name: "Birthday & Baby Shower",
+    slug: "birthday-baby-shower",
+    icon: Sparkles,
+    color: "from-purple-500 to-indigo-500",
+  },
+  {
+    name: "Rangoli & Floral",
+    slug: "rangoli-floral",
+    icon: Flower,
+    color: "from-orange-500 to-yellow-500",
+  },
+  {
+    name: "Professional Photography",
+    slug: "professional-photography",
+    icon: Camera,
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    name: "DJ & Sound Systems",
+    slug: "dj-sound-systems",
+    icon: Music,
+    color: "from-green-500 to-emerald-500",
+  },
+  {
+    name: "Catering Services",
+    slug: "catering-services",
+    icon: Utensils,
+    color: "from-red-500 to-pink-500",
+  },
+];
+
+export function ModernHeader({
+  navigationSections,
+  headerData,
+}: ModernHeaderProps) {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,8 +82,8 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const buildSectionUrl = (section: SectionHierarchy): string => {
@@ -38,14 +94,13 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
     <motion.header
       className={`sticky top-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-purple-100/50'
-          : 'bg-white/90 backdrop-blur-lg border-b border-purple-50'
+          ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-purple-100/50"
+          : "bg-white/90 backdrop-blur-lg border-b border-purple-50"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* Top Bar */}
       <div className="bg-gradient-to-r from-purple-600 to-pink-600 py-2 px-4">
         <div className="container mx-auto flex items-center justify-between text-white text-sm">
           <div className="flex items-center space-x-4">
@@ -59,14 +114,17 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
               <span className="font-medium">Premium Event Management</span>
             </div>
           </div>
-          
+
           <Button
             asChild
             variant="ghost"
             size="sm"
             className="text-white hover:bg-white/20 rounded-full px-3 py-1 h-auto text-xs"
           >
-            <Link href={`https://wa.me/${"+91 81809 39260".replace(/\s+/g, '')}`} target="_blank">
+            <Link
+              href={`https://wa.me/${"+91 81809 39260".replace(/\s+/g, "")}`}
+              target="_blank"
+            >
               <MessageCircle className="h-3 w-3 mr-1" />
               WhatsApp Us
             </Link>
@@ -74,20 +132,18 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
         </div>
       </div>
 
-      {/* Main Navigation */}
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="group flex items-center space-x-3 transition-transform hover:scale-105 duration-300"
           >
             <div className="relative">
-              <Image 
-                src="/logo.jpg" 
-                className="w-12 h-12 rounded-xl shadow-lg" 
-                alt="Shubharambh events logo" 
-                width={48} 
+              <Image
+                src="/logo.jpg"
+                className="w-12 h-12 rounded-xl shadow-lg"
+                alt="Shubharambh events logo"
+                width={48}
                 height={48}
               />
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity"></div>
@@ -105,13 +161,10 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
             {[
               { href: "/", label: "Home" },
               { href: "/about", label: "About" },
-              { href: "/products", label: "Gallery" },
-              { href: "/contact", label: "Contact" }
             ].map((item) => (
               <Link
                 key={item.href}
@@ -123,18 +176,79 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
                 <span className="absolute inset-0 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
               </Link>
             ))}
-            
+
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveDropdown("services")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="relative px-6 py-2 text-gray-700 hover:text-purple-600 transition-all duration-300 font-semibold group flex items-center">
+                Services
+                <ChevronDown
+                  className={`ml-1 h-4 w-4 transition-transform duration-300 ${activeDropdown === "services" ? "rotate-180" : ""}`}
+                />
+                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-4/5 group-hover:left-1/10 transition-all duration-300 transform -translate-x-1/2"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === "services" && (
+                  <motion.div
+                    className="absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-purple-100 overflow-hidden"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="py-2">
+                      {servicesMenuItems.map((service, index) => {
+                        const ServiceIcon = service.icon;
+                        return (
+                          <Link
+                            key={service.slug}
+                            href={`/service/${service.slug}`}
+                            className="flex items-center px-4 py-3 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-300 group"
+                          >
+                            <div
+                              className={`w-10 h-10 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300`}
+                            >
+                              <ServiceIcon className="h-5 w-5 text-white" />
+                            </div>
+                            <span className="text-gray-700 font-medium group-hover:text-purple-600 transition-colors">
+                              {service.name}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {[
+              { href: "/products", label: "Gallery" },
+              { href: "/contact", label: "Contact" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative px-6 py-2 text-gray-700 hover:text-purple-600 transition-all duration-300 font-semibold group"
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-4/5 group-hover:left-1/10 transition-all duration-300 transform -translate-x-1/2"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
+              </Link>
+            ))}
+
             <Button
               asChild
               className="ml-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-purple-400/40 transition-all duration-300 transform hover:scale-105 px-6 py-2"
             >
-              <Link href="/contact">
-                Get Quote
-              </Link>
+              <Link href="/contact">Get Quote</Link>
             </Button>
           </nav>
 
-          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
@@ -143,7 +257,9 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
           >
             <div className="relative w-6 h-6">
               <motion.div
-                animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                animate={
+                  isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }
+                }
                 transition={{ duration: 0.3 }}
                 className="absolute w-6 h-0.5 bg-gray-700 group-hover:bg-purple-600"
               />
@@ -153,7 +269,9 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
                 className="absolute top-2 w-6 h-0.5 bg-gray-700 group-hover:bg-purple-600"
               />
               <motion.div
-                animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                animate={
+                  isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }
+                }
                 transition={{ duration: 0.3 }}
                 className="absolute top-4 w-6 h-0.5 bg-gray-700 group-hover:bg-purple-600"
               />
@@ -161,7 +279,6 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
           </Button>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -175,8 +292,6 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
                 {[
                   { href: "/", label: "Home" },
                   { href: "/about", label: "About" },
-                  { href: "/products", label: "Gallery" },
-                  { href: "/contact", label: "Contact Us" }
                 ].map((item, index) => (
                   <motion.div
                     key={item.href}
@@ -194,11 +309,90 @@ export function ModernHeader({ navigationSections, headerData }: ModernHeaderPro
                     </Link>
                   </motion.div>
                 ))}
-                
+
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <button
+                    onClick={() =>
+                      setActiveDropdown(
+                        activeDropdown === "services-mobile"
+                          ? null
+                          : "services-mobile",
+                      )
+                    }
+                    className="flex items-center justify-between w-full text-gray-700 hover:text-purple-600 transition-all duration-300 font-semibold py-4 px-6 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 group border border-transparent hover:border-purple-100"
+                  >
+                    <div className="flex items-center">
+                      <div className="w-1 h-6 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      Services
+                    </div>
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 ${activeDropdown === "services-mobile" ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {activeDropdown === "services-mobile" && (
+                      <motion.div
+                        className="ml-4 mt-2 space-y-1"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {servicesMenuItems.map((service) => {
+                          const ServiceIcon = service.icon;
+                          return (
+                            <Link
+                              key={service.slug}
+                              href={`/service/${service.slug}`}
+                              className="flex items-center px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-300 group"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              <div
+                                className={`w-8 h-8 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300`}
+                              >
+                                <ServiceIcon className="h-4 w-4 text-white" />
+                              </div>
+                              <span className="text-sm text-gray-700 font-medium group-hover:text-purple-600 transition-colors">
+                                {service.name}
+                              </span>
+                            </Link>
+                          );
+                        })}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {[
+                  { href: "/products", label: "Gallery" },
+                  { href: "/contact", label: "Contact Us" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + index * 0.1 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className="flex items-center text-gray-700 hover:text-purple-600 transition-all duration-300 font-semibold py-4 px-6 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 group border border-transparent hover:border-purple-100"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <div className="w-1 h-6 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
                   className="pt-4 border-t border-gray-200/50 mt-4"
                 >
                   <Button

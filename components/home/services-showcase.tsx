@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Heart, 
-  Camera, 
-  Music, 
-  Utensils, 
-  Flower, 
+import {
+  Heart,
+  Camera,
+  Music,
+  Utensils,
+  Flower,
   Sparkles,
   ArrowRight,
-  Star
+  Star,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,69 +21,95 @@ const services = [
   {
     id: 1,
     title: "Wedding Planning",
-    description: "Complete wedding planning services from engagement to reception",
+    description:
+      "Complete wedding planning services from engagement to reception",
     icon: Heart,
-    image: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image:
+      "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800",
     features: ["Venue Selection", "Decoration", "Catering", "Photography"],
-    color: "from-pink-500 to-rose-500"
+    color: "from-pink-500 to-rose-500",
+    slug: "/wedding-planning",
   },
   {
     id: 2,
     title: "Birthday & Baby Shower",
     description: "Memorable celebrations for your special milestones",
     icon: Sparkles,
-    image: "https://images.pexels.com/photos/1729854/pexels-photo-1729854.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image:
+      "https://m.media-amazon.com/images/I/71IC2lqIgdL._AC_UF1000,1000_QL80_.jpg",
     features: ["Theme Planning", "Decoration", "Entertainment", "Catering"],
-    color: "from-purple-500 to-indigo-500"
+    color: "from-purple-500 to-indigo-500",
+    slug: "/birthday-baby-shower",
   },
   {
     id: 3,
     title: "Rangoli & Floral",
     description: "Traditional and modern decorative arrangements",
     icon: Flower,
-    image: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800",
-    features: ["Rangoli Designs", "Floral Arrangements", "Traditional Decor", "Modern Styling"],
-    color: "from-orange-500 to-yellow-500"
+    image:
+      "https://d1msew97rp2nin.cloudfront.net/prodin/phool/plpimages/design-for-diwali-rangoli-1728453297509-c4b5e00c-ba41-4bfd-a465-bc79a4fcf708.webp",
+    features: [
+      "Rangoli Designs",
+      "Floral Arrangements",
+      "Traditional Decor",
+      "Modern Styling",
+    ],
+    color: "from-orange-500 to-yellow-500",
+    slug: "rangoli-floral",
   },
   {
     id: 4,
     title: "Professional Photography",
     description: "Capture every precious moment with our expert photographers",
     icon: Camera,
-    image: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800",
-    features: ["Wedding Photography", "Event Coverage", "Portrait Sessions", "Video Services"],
-    color: "from-blue-500 to-cyan-500"
+    image:
+      "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800",
+    features: [
+      "Wedding Photography",
+      "Event Coverage",
+      "Portrait Sessions",
+      "Video Services",
+    ],
+    color: "from-blue-500 to-cyan-500",
+    slug: "/professional-photography",
   },
   {
     id: 5,
     title: "DJ & Sound Systems",
     description: "Professional audio equipment and entertainment services",
     icon: Music,
-    image: "https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image:
+      "https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=800",
     features: ["DJ Services", "Sound Systems", "Lighting", "Live Music"],
-    color: "from-green-500 to-emerald-500"
+    color: "from-green-500 to-emerald-500",
+    slug: "/dj-sound-systems",
   },
   {
     id: 6,
     title: "Catering Services",
     description: "Delicious cuisine and professional catering for all events",
     icon: Utensils,
-    image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800",
-    features: ["Multi-Cuisine", "Live Counters", "Traditional Food", "Modern Presentation"],
-    color: "from-red-500 to-pink-500"
-  }
+    image:
+      "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800",
+    features: [
+      "Multi-Cuisine",
+      "Live Counters",
+      "Traditional Food",
+      "Modern Presentation",
+    ],
+    color: "from-red-500 to-pink-500",
+    slug: "/catering-services",
+  },
 ];
 
 export function ServicesShowcase() {
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50/30 relative overflow-hidden">
-      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-600 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -95,7 +121,7 @@ export function ServicesShowcase() {
             <Star className="h-4 w-4 mr-2" />
             Our Services
           </Badge>
-          
+
           <h2 className="text-4xl md:text-6xl font-black mb-6">
             <span className="text-gray-900">Complete Event</span>
             <br />
@@ -103,14 +129,13 @@ export function ServicesShowcase() {
               Management Solutions
             </span>
           </h2>
-          
+
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            From intimate gatherings to grand celebrations, we bring your vision to life with 
-            meticulous planning and flawless execution.
+            From intimate gatherings to grand celebrations, we bring your vision
+            to life with meticulous planning and flawless execution.
           </p>
         </motion.div>
 
-        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -131,8 +156,10 @@ export function ServicesShowcase() {
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  
-                  <div className={`absolute top-4 left-4 w-12 h-12 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg`}>
+
+                  <div
+                    className={`absolute top-4 left-4 w-12 h-12 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg`}
+                  >
                     <service.icon className="h-6 w-6 text-white" />
                   </div>
                 </div>
@@ -148,7 +175,9 @@ export function ServicesShowcase() {
                   </div>
 
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-gray-900 text-sm">Includes:</h4>
+                    <h4 className="font-semibold text-gray-900 text-sm">
+                      Includes:
+                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {service.features.map((feature) => (
                         <Badge
@@ -166,7 +195,10 @@ export function ServicesShowcase() {
                     asChild
                     className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group/btn"
                   >
-                    <Link href="/contact" className="flex items-center justify-center">
+                    <Link
+                      href={`/service/${service.slug}`}
+                      className="flex items-center justify-center"
+                    >
                       Learn More
                       <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
@@ -177,7 +209,6 @@ export function ServicesShowcase() {
           ))}
         </div>
 
-        {/* CTA Section */}
         <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
@@ -187,15 +218,16 @@ export function ServicesShowcase() {
         >
           <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent"></div>
-            
+
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-bold mb-4">
                 Ready to Create Something Amazing?
               </h3>
               <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-                Let&apos;s discuss your event and bring your vision to life with our expert team.
+                Let&apos;s discuss your event and bring your vision to life with
+                our expert team.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   asChild
@@ -204,7 +236,7 @@ export function ServicesShowcase() {
                 >
                   <Link href="/contact">Get Free Consultation</Link>
                 </Button>
-                
+
                 <Button
                   asChild
                   variant="outline"
