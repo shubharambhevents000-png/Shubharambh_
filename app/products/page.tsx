@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Card } from "@/components/ui/card"
+import { AnimatedTabs } from "@/components/ui/animated-tabs"
 
 interface Product {
   id: string
@@ -32,7 +32,6 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Fetch all data on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -68,14 +67,36 @@ const ProductsPage = () => {
     fetchData()
   }, [])
 
-  // Filter products by selected section (client-side)
   const getFilteredProducts = (sectionId: string) => {
     return allProducts.filter((product) => product.sections?.some((section) => section.id === sectionId))
   }
 
-  // Handle tab change
-  const handleTabChange = (sectionId: string) => {
-    setSelectedSection(sectionId)
+  const renderProducts = (products: Product[], columns = 3) => {
+    if (products.length === 0) {
+      return <div className="py-12 text-center text-muted-foreground">No products found in this category.</div>
+    }
+
+    const gridColsClass =
+      columns === 2
+        ? "sm:grid-cols-2 lg:grid-cols-2"
+        : columns === 4
+          ? "sm:grid-cols-3 lg:grid-cols-4"
+          : "sm:grid-cols-3 lg:grid-cols-3"
+
+    return (
+      <div className={cn("grid grid-cols-2 gap-4", gridColsClass)}>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    )
+  }
+
+  const handleTabChange = (sectionName: string) => {
+    const section = sections.find((s) => s.name === sectionName)
+    if (section) {
+      setSelectedSection(section.id)
+    }
   }
 
   const renderSkeleton = () => (
@@ -88,7 +109,6 @@ const ProductsPage = () => {
     </div>
   )
 
-  // Dedicated, accessible ProductCard for consistent styling
   function ProductCard({ product }: { product: Product }) {
     return (
       <Link href={`/products/${product.id}`} className="group focus:outline-none">
@@ -111,30 +131,6 @@ const ProductsPage = () => {
     )
   }
 
-  // Improve skeleton to card-shaped placeholders with consistent aspect ratio
-  // Fix dynamic Tailwind class and switch to ProductCard for better visuals
-  const renderProducts = (products: Product[], columns = 3) => {
-    if (products.length === 0) {
-      return <div className="py-12 text-center text-muted-foreground">No products found in this category.</div>
-    }
-
-    // Ensure Tailwind receives static classes
-    const gridColsClass =
-      columns === 2
-        ? "sm:grid-cols-2 lg:grid-cols-2"
-        : columns === 4
-          ? "sm:grid-cols-3 lg:grid-cols-4"
-          : "sm:grid-cols-3 lg:grid-cols-3"
-
-    return (
-      <div className={cn("grid grid-cols-2 gap-4", gridColsClass)}>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-background">
       <div className="text-center mb-8 px-4">
@@ -150,25 +146,17 @@ const ProductsPage = () => {
         ) : loading ? (
           renderSkeleton()
         ) : (
-          <Tabs value={selectedSection} onValueChange={handleTabChange} className="w-full">
-            <TabsList className="mx-auto mb-8 flex max-w-full flex-wrap justify-center gap-2">
-              {sections.map((section) => (
-                <TabsTrigger
-                  key={section.id}
-                  value={section.id}
-                  className="px-3 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-                >
-                  {section.name}
-                </TabsTrigger>
-              ))}
-            </TabsList>
+          <>
+            <div className="flex justify-center mb-8">
+              <AnimatedTabs
+                tabs={sections.map((section) => ({ label: section.name }))}
+                activeTab={sections.find((s) => s.id === selectedSection)?.name || ""}
+                onTabChange={handleTabChange}
+              />
+            </div>
 
-            {sections.map((section) => (
-              <TabsContent key={section.id} value={section.id} className="mt-0">
-                {renderProducts(getFilteredProducts(section.id))}
-              </TabsContent>
-            ))}
-          </Tabs>
+            {renderProducts(getFilteredProducts(selectedSection))}
+          </>
         )}
       </div>
     </div>
