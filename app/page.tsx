@@ -31,9 +31,9 @@ export default async function Home() {
       <main>
         <ModernHeroSection />
         <ServicesShowcase />
-        <TestimonialsSection />
-        <ProductSlider />
         <YoutubeSection />
+        <ProductSlider />
+        <TestimonialsSection />
       </main>
     </div>
   );

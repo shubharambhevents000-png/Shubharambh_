@@ -15,7 +15,7 @@ export function ModernFooter() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)]"></div>
       </div>
-      
+
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand Section */}
@@ -35,9 +35,9 @@ export function ModernFooter() {
                   <p className="text-purple-200">& Management</p>
                 </div>
               </div>
-              
+
               <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
-                Creating unforgettable experiences through exceptional event planning and management. 
+                Creating unforgettable experiences through exceptional event planning and management.
                 Your dream event is our passion and expertise.
               </p>
 
@@ -53,7 +53,7 @@ export function ModernFooter() {
               </div>
             </motion.div>
           </div>
-          
+
           {/* Quick Links */}
           <div>
             <motion.div
@@ -68,15 +68,15 @@ export function ModernFooter() {
               </h4>
               <ul className="space-y-3">
                 {[
-                  { href: '/', label: 'Home' },
-                  { href: '/about', label: 'About Us' },
-                  { href: '/products', label: 'Services' },
-                  { href: '/bundles', label: 'Gallery' },
-                  { href: '/contact', label: 'Contact' }
+                  { href: "/", label: "Home" },
+                  { href: "/about", label: "About Us" },
+                  { href: "/products", label: "Services" },
+                  { href: "/bundles", label: "Gallery" },
+                  { href: "/contact", label: "Contact" },
                 ].map((link) => (
                   <li key={link.href}>
-                    <Link 
-                      href={link.href} 
+                    <Link
+                      href={link.href}
                       className="text-gray-300 hover:text-white transition-all duration-200 group flex items-center hover:translate-x-1"
                     >
                       <span className="w-2 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
@@ -87,8 +87,8 @@ export function ModernFooter() {
               </ul>
             </motion.div>
           </div>
-          
-          {/* Services */}
+
+          {/* Our Services (matched with header) */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -102,20 +102,20 @@ export function ModernFooter() {
               </h4>
               <ul className="space-y-3">
                 {[
-                  'Wedding Planning',
-                  'Birthday Celebrations',
-                  'Corporate Events',
-                  'Decoration Services',
-                  'Photography & Video',
-                  'Catering Services'
+                  { name: "Wedding Planning", slug: "wedding-planning" },
+                  { name: "Birthday & Baby Shower", slug: "birthday-baby-shower" },
+                  { name: "Rangoli & Floral", slug: "rangoli-floral" },
+                  { name: "Professional Photography", slug: "professional-photography" },
+                  { name: "DJ & Sound Systems", slug: "dj-sound-systems" },
+                  { name: "Catering Services", slug: "catering-services" },
                 ].map((service) => (
-                  <li key={service}>
-                    <Link 
-                      href="/contact" 
+                  <li key={service.slug}>
+                    <Link
+                      href={`/service/${service.slug}`}
                       className="text-gray-300 hover:text-white transition-all duration-200 group flex items-center hover:translate-x-1"
                     >
                       <span className="w-2 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                      {service}
+                      {service.name}
                     </Link>
                   </li>
                 ))}
@@ -123,7 +123,7 @@ export function ModernFooter() {
             </motion.div>
           </div>
         </div>
-        
+
         {/* Contact Info Bar */}
         <motion.div
           className="border-t border-white/10 pt-8 mb-8"
@@ -164,7 +164,7 @@ export function ModernFooter() {
             </div>
           </div>
         </motion.div>
-        
+
         {/* Bottom Section */}
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -181,7 +181,7 @@ export function ModernFooter() {
                 </Link>
               </div>
             </div>
-            
+
             <div className="flex items-center text-gray-300 text-sm">
               <span>Made with</span>
               <Heart className="h-4 w-4 mx-2 text-pink-400 fill-current animate-pulse" />
